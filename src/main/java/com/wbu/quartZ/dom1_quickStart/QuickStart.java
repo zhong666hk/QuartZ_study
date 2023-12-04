@@ -15,6 +15,7 @@ public class QuickStart {
     public static void main(String[] args) throws SchedulerException, InterruptedException {
         //创建一个scheduler(调度器)
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+        scheduler.start();
         // 在定时器中放数据-->job可以获取数据
         scheduler.getContext().put("skey", "svalue");
 
@@ -36,8 +37,8 @@ public class QuickStart {
 
         //注册trigger并启动scheduler
         scheduler.scheduleJob(job,trigger);
-        scheduler.start();
 
         TimeUnit.MINUTES.sleep(1);
+        scheduler.shutdown();
     }
 }
